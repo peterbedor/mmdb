@@ -3,13 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 use App\Http\Requests;
+use \GuzzleHttp\Client as Guzzle;
 
 class PagesController extends Controller
 {
 	public function index()
 	{
-		return view('pages.index');
+		$popularTitles = $this->getPopularTitles();
+
+		return view('pages.index')
+			->with([
+				'popularTitles' => $popularTitles->results,
+				'config' => $this->config
+			]);
     }
+
+	private function getPopularTitles()
+	{
+		$movies = (new Guzzle())->get('http://api.themoviedb.org/3/movie/popular?api_key=' . $this->apiKey);
+
+		return json_decode($movies->getBody());
+	}
 }

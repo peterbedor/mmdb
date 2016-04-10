@@ -3,5 +3,11 @@
 {% set pageTitle = 'Your movies, your collection' %}
 
 {% block content %}
+{% for title in popularTitles %}
+	<img src="{{ config.secureBaseUrl }}{{ config.backdropSizes[1] }}{{ title.backdrop_path }}">
+	<h1>{{ title.title }}</h1>
+{% endfor %}
+
+	{#{{ dump(config) }}#}
 
 {% endblock %}
