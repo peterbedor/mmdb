@@ -1,0 +1,16 @@
+{% extends 'layouts/master.twig' %}
+
+{% block content %}
+
+<form role="form" method="POST" action="{{ url('/login') }}">
+	{{ csrf_field() }}
+	<input type="email" name="email" value="{{ old('email') }}">
+	<input type="password" name="password">
+	<label>
+		<input type="checkbox" name="remember"> Remember Me
+	</label>
+	<button type="submit">Login</button>
+	<a href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+</form>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'layouts.master.twig' %}
+
+{% block content %}
+
+<form role="form" method="POST" action="{{ url('/password/reset') }}">
+	{{ csrf_field() }}
+	<input type="hidden" name="token" value="{{ token }}">
+	<input type="email" name="email" value="{{ email or old('email') }}">
+	<input type="password" name="password">
+	<input type="password" name="password_confirmation">
+	<button type="submit">Reset Password</button>
+</form>
+
+{% endblock %}

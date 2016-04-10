@@ -1,0 +1,14 @@
+{% extends 'layouts/master.twig' %}
+
+{% block content %}
+
+<form role="form" method="POST" action="{{ url('/register') }}">
+	{{ csrf_field() }}
+	<input type="text" name="name" value="{{ old('name') }}">
+	<input type="email" name="email" value="{{ old('email') }}">
+	<input type="password" name="password">
+	<input type="password" name="password_confirmation">
+	<button type="submit">Register</button>
+</form>
+
+{% endblock %}
