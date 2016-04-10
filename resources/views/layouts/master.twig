@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" id="global" itemscope itemtype="http://schema.org/WebPage">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+
+	<title>{% if pageTitle is defined %}{{ pageTitle }} | {% endif %}MMDb</title>
+	<meta name="description" content="{% if pageDescription is defined %}{{ pageDescription }}{% else %}MMDb is your movie collection.{% endif %}">
+
+	<link rel="stylesheet" href="/assets/css/style.min.css">
+
+	<link rel="apple-touch-icon" href="/assets/img/icons/touch.png">
+	<link rel="mask-icon" href="/assets/img/icons/pin.svg" color="#349bb9">
+
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="MMDb">
+	<meta property="og:title" content="{% if pageTitle is defined %}{{ pageTitle }} | {% endif %}MMDb" itemprop="name">
+	<meta property="og:description" content="{% if pageDescription is defined %}{{ pageDescription }}{% else %}MMDb is your movie collection.{% endif %}" itemprop="description">
+	<meta property="og:url" content="{{ currentUrl }}" itemprop="url">
+	<meta property="og:image" content="{{ siteUrl }}/assets/img/share.png" itemprop="image">
+
+	<!--[if lte IE 9]>
+	<script src="/assets/js/ie9.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+	{% block content %}
+	{% endblock %}
+<script src="/assets/js/script.min.js"></script>
+</body>
+</html>
