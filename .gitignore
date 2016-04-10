@@ -1,0 +1,66 @@
+#------------------------------------
+	# Project
+#------------------------------------
+
+/vendor
+/node_modules
+/public/storage
+Homestead.yaml
+Homestead.json
+.env
+
+
+
+#------------------------------------
+	# Wee
+#------------------------------------
+
+node_modules/
+out/
+
+
+#------------------------------------
+	# Tools
+#------------------------------------
+
+.bundle
+.idea/
+.komodotools
+.project
+.settings/
+.tern-project
+.tmproj
+.vscode/
+*.esproj
+*.komodoproject
+*.sublime-*
+browserstack.js
+codekit-config.json
+prepros.json
+
+
+#------------------------------------
+	# System
+#------------------------------------
+
+.cache
+.DS_Store
+.tmp
+*.diff
+*.err
+*.lock
+*.log
+*.orig
+*.rej
+*.swo
+*.swp
+*.vi
+error_log
+Thumbs.db
+
+
+#------------------------------------
+	# Gitkeep
+#------------------------------------
+
+!.gitkeep
