@@ -7,8 +7,55 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesResources;
+use App\Configuration;
 
 class Controller extends BaseController
 {
     use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
+
+	public $apiKey;
+	public $config;
+
+	public function __construct()
+	{
+		$this->apiKey = env('API_KEY');
+
+		$this->config = $this->setConfiguration();
+	}
+
+	private function setConfiguration()
+	{
+		$rawConfig = Configuration::get();
+
+		$config = [
+			'secureBaseUrl' => $rawConfig->secure_base_url,
+			'backdropSizes' => [],
+			'posterSizes' => [],
+			'profileSizes' => [],
+			'logoSizes' => [],
+			'stillSizes' => []
+		];
+
+		foreach (explode(',', $rawConfig->backdrop_sizes) as $size) {
+			$config['backdropSizes'][] = $size;
+		}
+
+		foreach (explode(',', $rawConfig->poster_sizes) as $size) {
+			$config['posterSizes'][] = $size;
+		}
+
+		foreach (explode(',', $rawConfig->profile_sizes) as $size) {
+			$config['profileSizes'][] = $size;
+		}
+
+		foreach (explode(',', $rawConfig->logo_sizes) as $size) {
+			$config['logoSizes'][] = $size;
+		}
+
+		foreach (explode(',', $rawConfig->still_sizes) as $size) {
+			$config['stillSizes'][] = $size;
+		}
+
+		return $config;
+	}
 }
