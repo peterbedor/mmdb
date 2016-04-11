@@ -2,7 +2,7 @@
 // Route documentation available at https://www.weepower.com/script/routes
 
 Wee.routes.map({
-	'$any': 'common'
+	'$root||$any': 'frontPage'
 });
 
 Wee.ready('routes:run');
