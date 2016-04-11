@@ -3,9 +3,20 @@
 \*------------------------------------*/
 
 #global {
-	// Global helpers and state modifiers
+	input {
+		.font-weight(300);
+	}
 }
 
+input::-webkit-input-placeholder {
+	.font-weight(100);
+}
+input::-moz-placeholder {
+	.font-weight(100);
+}
+input:-ms-input-placeholder {
+	.font-weight(100);
+}
 
 
 
@@ -96,7 +107,7 @@ body {
 	&__heading {
 		.align(center);
 		.font(@headingFont; 4; 100);
-		.margin(top; 4);
+		.padding(top; 4);
 	}
 	&__button {
 		.fill();
@@ -118,6 +129,11 @@ body {
 \*------------------------------------*/
 
 .login {
+	&__heading {
+		.align(center);
+		.font(@headingFont; 4; 100);
+		.padding(top; 4);
+	}
 	&__button {
 		.fill();
 		.spaced(0);
