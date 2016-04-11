@@ -12,14 +12,21 @@ class CreateMoviesTable extends Migration
      */
     public function up()
     {
-        Schema::create('movie_user', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id')
-                ->unsigned();
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users');
-            $table->timestamps();
+        Schema::create('movies', function (Blueprint $table) {
+			$table->increments('id');
+			$table->integer('tmdb_id')
+				->unsigned();
+			$table->string('imdb_id');
+			$table->string('title');
+			$table->text('overview');
+			$table->string('tagline');
+			$table->string('status');
+			$table->integer('runtime');
+			$table->string('release_date');
+			$table->string('slug');
+			$table->string('poster_path');
+			$table->string('backdrop_path');
+			$table->timestamps();
         });
     }
 
@@ -30,6 +37,6 @@ class CreateMoviesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('movie_user');
+        Schema::drop('movies');
     }
 }
