@@ -1,0 +1,27 @@
+/*------------------------------------*\
+	# Main Navigation
+\*------------------------------------*/
+
+.main-navigation {
+	&__menu {
+		.clear(none);
+		.min-height(7.7);
+		.right();
+	}
+	&__logo {
+		.left();
+	}
+	&__toggle {
+		.hide() !important;
+	}
+	&__menu-item {
+		.inline-block();
+		.padding(1.3);
+		&:last-child {
+			.padding(1.3; 0; 1.3; 1.3);
+		}
+	}
+	&__menu-link {
+		.font-size(2);
+	}
+}
