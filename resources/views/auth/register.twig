@@ -1,10 +1,10 @@
 {% extends 'layouts/master.twig' %}
 
 {% block content %}
-<div class="wrap" style="background-image: url('{{ config.secureBaseUrl }}{{ config.backdropSizes[3] }}{{ popularTitles[random(20)].backdrop_path }}')">
-<div class="container">
-	<h1 class="register__heading">MMDb</h1>
 
+{% include 'partials/nav.twig' %}
+
+<div class="container">
 	<form role="form" method="POST" action="{{ url('/register') }}" class="user-form">
 		{{ csrf_field() }}
 		<input
@@ -76,6 +76,5 @@
 		</div>
 	</form>
 </div>
-	</div>
 
 {% endblock %}

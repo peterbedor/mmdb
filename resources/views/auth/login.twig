@@ -1,9 +1,10 @@
 {% extends 'layouts/master.twig' %}
 
 {% block content %}
-<div class="container">
-	<h1 class="register__heading">MMDb</h1>
 
+{% include 'partials/nav.twig' %}
+
+<div class="container">
 	<form role="form" method="POST" action="{{ url('/login') }}" class="user-form">
 		{{ csrf_field() }}
 
