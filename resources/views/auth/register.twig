@@ -1,14 +1,81 @@
 {% extends 'layouts/master.twig' %}
 
 {% block content %}
+<div class="wrap" style="background-image: url('{{ config.secureBaseUrl }}{{ config.backdropSizes[3] }}{{ popularTitles[random(20)].backdrop_path }}')">
+<div class="container">
+	<h1 class="register__heading">MMDb</h1>
 
-<form role="form" method="POST" action="{{ url('/register') }}">
-	{{ csrf_field() }}
-	<input type="text" name="name" value="{{ old('name') }}">
-	<input type="email" name="email" value="{{ old('email') }}">
-	<input type="password" name="password">
-	<input type="password" name="password_confirmation">
-	<button type="submit">Register</button>
-</form>
+	<form role="form" method="POST" action="{{ url('/register') }}" class="user-form">
+		{{ csrf_field() }}
+		<input
+			type="text"
+			name="first_name"
+			value="{{ old('first_name') }}"
+			placeholder="First Name"
+			class="user-form__input{% if errors.messages.first_name %} -has-error{% endif %}"
+		>
+		{% if errors.messages.first_name %}
+			<span class="user-form__error">
+				{{ errors.messages.first_name[0] }}
+			</span>
+		{% endif %}
+
+		<input
+			type="text"
+			name="last_name"
+			value="{{ old('last_name') }}"
+			placeholder="Last Name"
+			class="user-form__input{% if errors.messages.last_name %} -has-error{% endif %}"
+		>
+		{% if errors.messages.last_name %}
+			<span class="user-form__error">
+				{{ errors.messages.last_name[0] }}
+			</span>
+		{% endif %}
+
+		<input
+			type="email"
+			name="email"
+			value="{{ old('email') }}"
+			placeholder="Email"
+			class="user-form__input{% if errors.messages.email %} -has-error{% endif %}"
+		>
+		{% if errors.messages.email %}
+			<span class="user-form__error">
+				{{ errors.messages.email[0] }}
+			</span>
+		{% endif %}
+
+		<input
+			type="password"
+			name="password"
+			placeholder="Password"
+			class="user-form__input{% if errors.messages.password %} -has-error{% endif %}"
+		>
+		{% if errors.messages.password %}
+			<span class="user-form__error">
+				{{ errors.messages.password[0] }}
+			</span>
+		{% endif %}
+
+		<input
+			type="password"
+			name="password_confirmation"
+			placeholder="Confirm Password"
+		>
+
+		<div class="user-form__bottom">
+			<a href="#" class="user-form__bottom-link">Terms and Conditions</a>
+			<a href="#" class="user-form__bottom-link">Privacy Policy</a>
+		</div>
+
+		<button class="button button-colored register__button" type="submit">Register</button>
+
+		<div class="register__agreement">
+			By registering you agree to our terms and conditions
+		</div>
+	</form>
+</div>
+	</div>
 
 {% endblock %}

@@ -1,16 +1,46 @@
 {% extends 'layouts/master.twig' %}
 
 {% block content %}
+<div class="container">
+	<h1 class="register__heading">MMDb</h1>
 
-<form role="form" method="POST" action="{{ url('/login') }}">
-	{{ csrf_field() }}
-	<input type="email" name="email" value="{{ old('email') }}">
-	<input type="password" name="password">
-	<label>
-		<input type="checkbox" name="remember"> Remember Me
-	</label>
-	<button type="submit">Login</button>
-	<a href="{{ url('/password/reset') }}">Forgot Your Password?</a>
-</form>
+	<form role="form" method="POST" action="{{ url('/login') }}" class="user-form">
+		{{ csrf_field() }}
+
+		<input
+			type="email"
+			name="email"
+			value="{{ old('email') }}"
+			placeholder="Email"
+			class="user-form__input{% if errors.messages.email %} -has-error{% endif %}"
+		>
+		{% if errors.messages.email %}
+			<span class="user-form__error">
+				{{ errors.messages.email[0] }}
+			</span>
+		{% endif %}
+
+		<input
+			type="password"
+			name="password"
+			placeholder="Password"
+			class="user-form__input{% if errors.messages.password %} -has-error{% endif %}"
+		>
+		{% if errors.messages.password %}
+			<span class="user-form__error">
+				{{ errors.messages.password[0] }}
+			</span>
+		{% endif %}
+
+		<div class="user-form__bottom">
+			<label class="user-form__bottom-link">
+				<input type="checkbox" name="remember"> Remember Me
+			</label>
+			<a href="{{ url('/password/reset') }}" class="user-form__bottom-link">Forgot Your Password?</a>
+		</div>
+
+		<button class="button button-colored login__button" type="submit">Login</button>
+	</form>
+</div>
 
 {% endblock %}
