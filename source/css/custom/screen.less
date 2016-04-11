@@ -160,3 +160,49 @@ body {
 		}
 	}
 }
+
+
+
+
+
+/*------------------------------------*\
+	# Information
+\*------------------------------------*/
+
+.information {
+	.absolute();
+	.bottom(0);
+	.right(0);
+	.min-width(38);
+	&__inner {
+		.relative();
+		.background(@white, 90%);
+		.bottom(6);
+		.max-width(38);
+		.padding(2);
+		.right(2);
+		.transition();
+		.transparent();
+		&.-is-active {
+			.opaque();
+		}
+	}
+	&__overview {
+		.max-height(50);
+		.scroll();
+	}
+	&__icon {
+		.absolute();
+		.bottom(2);
+		.cursor();
+		.right(2);
+		.white();
+	}
+	&__heading {
+		.font-size(3);
+	}
+	&__close {
+		.absolute(1; 1);
+		.cursor();
+	}
+}

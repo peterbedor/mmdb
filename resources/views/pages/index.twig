@@ -2,13 +2,15 @@
 
 {% set pageTitle = 'Your movies, your collection' %}
 
+{% set title = random(20) %}
+
 {% block content %}
-	<div class="wrap" style="background-image: url('{{ config.secureBaseUrl }}{{ config.backdropSizes[3] }}{{ popularTitles[random(20)].backdrop_path }}')">
+	<div class="wrap" style="background-image: url('{{ config.secureBaseUrl }}{{ config.backdropSizes[3] }}{{ popularTitles[title].backdrop_path }}')">
 		<div class="front-page">
 			<h1 class="front-page__header">MMDb</h1>
 			<div class="front-page__actions">
 				<a href="/register" class="button button-colored front-page__action">Sign Up</a>
-				<a href="#" class="button front-page__action">Log In</a>
+				<a href="#" class="button front-page__action">Sign In</a>
 			</div>
 			{#<a href="#" class="front-page__more-toggle" data-ref="moreToggle">?</a>#}
 			{#<div class="front-page__more js-hide" data-ref="more">#}
@@ -18,5 +20,13 @@
 		{#<div class="front-page__down">#}
 			{#<i class="fa fa-angle-down fa-3x"></i>#}
 		{#</div>#}
+		<div class="information">
+			<div class="information__inner js-hide" data-ref="info">
+				<i class="fa fa-close information__close" data-ref="infoClose"></i>
+				<h2 class="information__heading">{{ popularTitles[title].title }}</h2>
+				<p class="information__overview">{{ popularTitles[title].overview }}</p>
+			</div>
+			<i class="fa fa-info fa-1x information__icon" data-ref="infoToggle"></i>
+		</div>
 	</div>
 {% endblock %}
