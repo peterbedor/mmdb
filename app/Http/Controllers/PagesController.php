@@ -10,19 +10,10 @@ class PagesController extends Controller
 {
 	public function index()
 	{
-		$popularTitles = $this->getPopularTitles();
-
 		return view('pages.index')
 			->with([
-				'popularTitles' => $popularTitles->results,
+				'popularTitles' => MovieController::getPopularTitles(),
 				'config' => $this->config
 			]);
     }
-
-	private function getPopularTitles()
-	{
-		$movies = (new Guzzle())->get('http://api.themoviedb.org/3/movie/popular?api_key=' . $this->apiKey);
-
-		return json_decode($movies->getBody());
-	}
 }
