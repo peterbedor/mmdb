@@ -1,14 +1,11 @@
-// Controller documentation available at https://www.weepower.com/script/core#fnmake
-
 Wee.fn.make('common', {
-	_construct: function() {
-		// ...
-	},
 	init: function() {
-		this.$private.method();
+		this.$private.mobileNav();
 	}
 }, {
-	method: function() {
-		// ...
+	mobileNav: function() {
+		$('ref:mobileNavToggle').on('click', function() {
+			$('ref:mobileNav').toggleClass('-is-active');
+		});
 	}
 });
