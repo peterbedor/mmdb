@@ -1,8 +1,13 @@
-// Add custom JavaScript here
-// Route documentation available at https://www.weepower.com/script/routes
-
 Wee.routes.map({
-	'$root||$any': 'frontPage'
+	'$root||$any': [
+		'registerapps',
+		'frontPage',
+		'common'
+	],
+	'home': [
+		'search',
+		'common'
+	]
 });
 
 Wee.ready('routes:run');
