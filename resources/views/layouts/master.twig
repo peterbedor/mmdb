@@ -1,3 +1,4 @@
+{% spaceless %}
 <!doctype html>
 <html lang="en" id="global" itemscope itemtype="http://schema.org/WebPage">
 <head>
@@ -28,7 +29,12 @@
 </head>
 <body>
 	{% block content %}
+
 	{% endblock %}
+
+	{% include 'partials/nav.twig' %}
+	{% include 'partials/search.twig' %}
 <script src="/assets/js/script.min.js"></script>
 </body>
 </html>
+{% endspaceless %}
