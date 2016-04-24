@@ -1,0 +1,47 @@
+{% extends 'layouts/master.twig' %}
+
+{% set index = random(movies|length - 1) %}
+
+{# Set pagination object #}
+{% set object = {'object': movies } %}
+
+{% block content %}
+	<div
+		class="header"
+		{% if movies %}
+			style="background-image: url('/{{ movies[index].backdrop_path }}')"
+		{% else %}
+			style="background-image: url('https://image.tmdb.org/t/p/w780/vsjBeMPZtyB7yNsYY56XYxifaQZ.jpg')"
+		{% endif %}
+	>
+		{% include 'partials/header-actions.twig' %}
+	</div>
+
+	<div class="container">
+		<main class="main-content  -no-poster" role="main">
+			<div class="main-content__inner -no-poster">
+				<div class="movies__letters">
+					{% for letter in range('A', 'Z') %}
+						<a href="/collection/{{ letter|lower }}" class="movies__letter">{{ letter }}</a>
+					{% endfor %}
+				</div>
+				<div class="movies">
+					{% for movie in movies %}
+						<a href="/collection/{{ movie.slug }}" class="movies__movie">
+							<img src="/{{ movie.poster_path }}" class="movies__movie-poster">
+							<div class="movies__movie-info">
+								<div class="movies__movie-title">
+									{{ movie.title }}
+								</div>
+								<div class="movies__movie-date">
+									{{ movie.release_date|date('F j, Y') }}
+								</div>
+							</div>
+						</a>
+					{% endfor %}
+				</div>
+				{% include 'partials/pagination.twig' with object %}
+			</div>
+		</main>
+	</div>
+{% endblock %}

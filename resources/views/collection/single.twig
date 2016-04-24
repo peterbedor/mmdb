@@ -1,0 +1,38 @@
+{% extends 'layouts/master.twig' %}
+
+{% block content %}
+	<div
+		class="header"
+		{% if movie %}
+			style="background-image: url('/{{ movie.backdrop_path }}')"
+		{% else %}
+			style="background-image: url('https://image.tmdb.org/t/p/w780/vsjBeMPZtyB7yNsYY56XYxifaQZ.jpg')"
+		{% endif %}
+	>
+		{% include 'partials/header-actions.twig' %}
+	</div>
+
+	<div class="container">
+		<main class="main-content" role="main">
+			<div class="movie">
+				<img src="/{{ movie.poster_path }}" class="movie__poster">
+			</div>
+			<div class="main-content__inner">
+				<h1 class="movie__title">
+					{{ movie.title }}
+				</h1>
+				<div class="movie__release-date">
+					{{ movie.release_date|date('F j, Y') }}
+				</div>
+				<ul class="movie__genres">
+					{% for genre in movie.genres %}
+						<li class="movie__genre">{{ genre.genre }}</li>
+					{% endfor %}
+				</ul>
+				<p class="movie__overview">
+					{{ movie.overview }}
+				</p>
+			</div>
+		</main>
+	</div>
+{% endblock %}

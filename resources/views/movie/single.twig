@@ -1,0 +1,63 @@
+{% extends 'layouts/master.twig' %}
+
+{% block content %}
+	<div
+		class="header"
+		{% if movie.backdrop_path %}
+			style="background-image: url({{ config.secureBaseUrl }}{{ config.backdropSizes[1] }}{{ movie.backdrop_path }})"
+		{% else %}
+			style="background-image: url('https://image.tmdb.org/t/p/w780/vsjBeMPZtyB7yNsYY56XYxifaQZ.jpg')"
+		{% endif %}
+	>
+		{% include 'partials/header-actions.twig' %}
+	</div>
+
+	<div class="container">
+		<main class="main-content" role="main">
+			<div class="movie">
+				<img src="{{ config.secureBaseUrl }}{{ config.posterSizes[1] }}{{ movie.poster_path }}" class="movie__poster">
+			</div>
+			<div class="main-content__inner">
+				<h1 class="movie__title">
+					{{ movie.title }}
+				</h1>
+				<div class="movie__release-date">
+					{{ movie.release_date|date('F j, Y') }}
+				</div>
+				<ul class="movie__genres">
+					{% for genre in movie.genres %}
+						<li class="movie__genre">{{ genre.name }}</li>
+					{% endfor %}
+				</ul>
+				<p class="movie__overview">
+					{{ movie.overview }}
+				</p>
+				<form action="/movie/add/{{ movie.id }}" method="post" class="hidden-inputs" data-ref="addMovie">
+					{{ csrf_field() }}
+					<input type="hidden" name="title" value="{{ movie.title }}">
+					<input type="hidden" name="overview" value="{{ movie.overview }}">
+					<input type="hidden" name="imdb_id" value="{{ movie.imdb_id }}">
+					<input type="hidden" name="tmdb_id" value="{{ movie.id }}">
+					<input type="hidden" name="release_date" value="{{ movie.release_date|date('U') }}">
+					<input type="hidden" name="tagline" value="{{ movie.tagline }}">
+					{% if movie.poster_path %}
+						<input type="hidden" name="poster" value="{{ config.secureBaseUrl }}{{ config.posterSizes[2] }}{{ movie.poster_path }}">
+					{% endif %}
+					{% if movie.backdrop_path %}
+						<input type="hidden" name="backdrop" value="{{ config.secureBaseUrl }}{{ config.backdropSizes[2] }}{{ movie.backdrop_path }}">
+					{% endif %}
+					<input type="hidden" name="runtime" value="{{ movie.runtime }}">
+					{% for genre in movie.genres %}
+						<input type="hidden" name="genres[]" value="{{ genre.id }}">
+					{% endfor %}
+					{% if movie.id not in collectionIds %}
+						<button class="button button-colored movie__button">Add to Collection</button>
+					{% else %}
+						<span class="movie__button">In Collection</span>
+					{% endif %}
+				</form>
+			</div>
+		</main>
+	</div>
+
+{% endblock %}
