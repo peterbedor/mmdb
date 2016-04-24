@@ -1,1 +1,27 @@
-// Add custom Less mixins here
+/*------------------------------------*\
+	# Icons
+\*------------------------------------*/
+
+.icon (@icon; @size: inherit; @rotate: false) {
+	font-variant: normal;
+	speak: none;
+	.content(@icon);
+	.font('icomoon'; @size; false; inherit; normal);
+	.inline-block();
+	.text-indent(0);
+	.text-sharpen();
+	.guard () when not (@rotate = false) {
+		.rotate(@rotate);
+	}
+	.guard();
+}
+.icon-modify (@icon; @size: false; @rotate: false) {
+	.content(@icon);
+	.guard () when not (@size = false) {
+		.font-size(@size);
+	}
+	.guard () when not (@rotate = false) {
+		.rotate(@rotate);
+	}
+	.guard();
+}
