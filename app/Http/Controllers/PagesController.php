@@ -2,18 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Http\Request;
 use \GuzzleHttp\Client as Guzzle;
 
 class PagesController extends Controller
 {
+	/**
+	 * @return mixed
+	 */
 	public function index()
 	{
-		return view('pages.index')
-			->with([
-				'popularTitles' => MovieController::getPopularTitles(),
-				'config' => $this->config
-			]);
+		$data = [
+			'popularTitles' => MovieController::getPopularTitles(),
+			'config' => self::getConfiguration()
+		];
+
+		return view('pages.index')->with($data);
     }
+
+	/**
+	 * @return mixed
+	 */
+	public function terms()
+	{
+		return view('pages.terms');
+	}
 }

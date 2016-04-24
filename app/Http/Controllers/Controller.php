@@ -14,16 +14,15 @@ class Controller extends BaseController
     use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
 
 	public $apiKey;
-	public $config;
 
 	public function __construct()
 	{
 		$this->apiKey = env('API_KEY');
-
-		$this->config = $this->setConfiguration();
+		
+		config(['app.uploadsPath' => $_SERVER['DOCUMENT_ROOT'] . '/uploads/']);
 	}
 
-	private function setConfiguration()
+	public static function getConfiguration()
 	{
 		$rawConfig = Configuration::get();
 
