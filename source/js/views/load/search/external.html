@@ -1,0 +1,22 @@
+<div class="results">
+	<span class="results__close" data-ref="resultsClose"></span>
+	{{ #results|each }}
+		<div class="container results__result">
+			{{ #poster_path|notEmpty }}
+				<a href="/movie/{{ id }}"><img src="{{ $root.config.secureBaseUrl }}{{ $root.config.posterSizes.3 }}{{ poster_path }}" class="results__result-image"></a>
+
+			{{ else }}
+
+			<a href="/movie/{{ id }}"><img src="https://static1.squarespace.com/static/55a66cffe4b0f979b8e41ab9/t/55a67159e4b0d382cc0a273c/1436971294391/THETITLE_CARTEL_WEBBAR.jpg?format=750w" class="results__result-image"></a>
+			{{ /poster_path }}
+			<div class="results__result-title">{{ title }}</div>
+		</div>
+	{{ /results }}
+</div>
+<br><br>
+<span data-ref="searchPaginationPrev" data-page="{{ page|prev }}" class="results__pagination-prev{{ #hasPrev|is(false) }}  -is-disabled{{ /hasPrev }}">
+</span>
+<span data-ref="searchPaginationNext" data-page="{{ page|next }}" data-pages="{{ totalPages }}" class="results__pagination-next{{ #hasNext|is(false) }} -is-disabled{{ /hasNext }}">
+{{ #page|is(totalPages) }} {{ /page }}
+</span>
+{{ /results }}

@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -149,6 +149,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         TwigBridge\ServiceProvider::class,
 		Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+		Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -204,6 +205,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Twig' => TwigBridge\Facade\Twig::class,
+		'Image' => Intervention\Image\Facades\Image::class
     ],
 
 ];
