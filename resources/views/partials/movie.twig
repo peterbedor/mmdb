@@ -1,0 +1,11 @@
+<a href="/collection/{{ movie.slug }}" class="movies__movie">
+	<img src="/{{ movie.poster_path }}" class="movies__movie-poster">
+	<div class="movies__movie-info">
+		<div class="movies__movie-title">
+			{{ movie.title }}
+		</div>
+		<div class="movies__movie-date">
+			{{ movie.release_date|date('F j, Y') }}
+		</div>
+	</div>
+</a>

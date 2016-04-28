@@ -1,8 +1,20 @@
-// Add custom JavaScript here
-// Route documentation available at https://www.weepower.com/script/routes
-
 Wee.routes.map({
-	'$any': 'common'
+	'$root||$any': [
+		'search',
+		'registerapps',
+		'frontPage',
+		'common'
+	],
+	'collection': {
+		'$any': 'movie',
+		'$root': [
+			'search',
+			'search:autocomplete'
+		]
+	},
+	'movie': {
+
+	}
 });
 
 Wee.ready('routes:run');

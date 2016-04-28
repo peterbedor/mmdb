@@ -1,0 +1,20 @@
+{% extends 'layouts/master.twig' %}
+
+{% block content %}
+	<div
+		class="header"
+		{% if movie.backdrop_path %}
+			style="background-image: url({{ config.secureBaseUrl }}{{ config.backdropSizes[1] }}{{ movie.backdrop_path }})"
+		{% endif %}
+	>
+		{% include 'partials/header-actions.twig' %}
+	</div>
+	<div class="container">
+		<main class="main-content  -no-poster" role="main">
+			<div class="main-content__inner -no-poster">
+				Uh oh..
+			</div>
+		</main>
+	</div>
+
+{% endblock %}

@@ -1,0 +1,8 @@
+{{ #results|each }}
+
+<a href="/collection/{{ slug }}" class="autocomplete__item">
+	<img src="{{ poster_path }}" class="autocomplete__image">
+	<div class="autocomplete__title">{{ title }}</div>
+</a>
+
+{{ /results }}

@@ -1,0 +1,40 @@
+<div class="header__inner">
+	{% if auth_check() %}
+		<form
+			action="/movie/search"
+			method="post"
+			class="header__form-search"
+			data-ref="searchForm"
+		>
+			{{ csrf_field() }}
+			<input
+				type="text"
+				name="query"
+				id="query"
+				class="header__input header__search"
+				data-ref="headerSearch"
+			>
+				<label
+					for="query"
+					data-ref="searchMovie"
+					class="header__icon-search"
+				></label>
+		</form>
+	{% endif %}
+	<span
+		class="header__icon-menu"
+		data-ref="mobileNavToggle"
+	></span>
+	<div class="header__nav" data-ref="headerNav">
+
+	</div>
+	<h1 class="header__heading">
+		<a
+			href="{% if auth_check() %}/collection{% else %}/{% endif %}"
+			class="header__heading-link"
+			data-ref="headerHeading"
+		>
+			MMDb
+		</a>
+	</h1>
+</div>
