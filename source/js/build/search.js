@@ -1,6 +1,20 @@
 Wee.fn.make('search', {
 	init: function() {
 		this.$private.search();
+		this.$private.helpers();
+	},
+	autocomplete: function() {
+		var ac = new Wee.fn.autocomplete();
+
+		ac.init({
+			input: 'ref:collectionSearch',
+			view: 'search.autocomplete',
+			url: '/collection/search/autocomplete',
+			csrf: $('ref:collectionSearch').data('csrf'),
+			onSelect: function($sel, $input) {
+				window.location = $sel.attr('href');
+			}
+		});
 	}
 }, {
 	search: function() {
@@ -114,6 +128,18 @@ Wee.fn.make('search', {
 			}
 		}, {
 			delegate: 'ref:results'
+		});
+	},
+	helpers: function() {
+		Wee.view.addHelper('getYear', function() {
+			var date = new Date(this.val),
+				year = date.getFullYear();
+
+			if (! isNaN(year)) {
+				return '(' + year + ')';
+			} else {
+				return;
+			}
 		});
 	}
 });

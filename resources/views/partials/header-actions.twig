@@ -10,19 +10,24 @@
 			<input
 				type="text"
 				name="query"
+				id="query"
 				class="header__input header__search"
 				data-ref="headerSearch"
 			>
-				<span
+				<label
+					for="query"
 					data-ref="searchMovie"
 					class="header__icon-search"
-				></span>
+				></label>
 		</form>
 	{% endif %}
 	<span
 		class="header__icon-menu"
 		data-ref="mobileNavToggle"
 	></span>
+	<div class="header__nav" data-ref="headerNav">
+
+	</div>
 	<h1 class="header__heading">
 		<a
 			href="{% if auth_check() %}/collection{% else %}/{% endif %}"

@@ -1,27 +1,205 @@
 /*------------------------------------*\
-	# Main Navigation
+	# Header
 \*------------------------------------*/
 
-.main-navigation {
-	&__menu {
-		.clear(none);
-		.min-height(7.7);
-		.right();
+.header {
+	&__inner {
+		.max-width(100);
+		.margin(left; auto);
+		.margin(right; auto);
 	}
-	&__logo {
+	.min-height(50);
+	&__icon-menu {
+		.hide();
+	}
+	&:after {
+		.rotate(-3deg);
+	}
+}
+
+
+
+
+/*------------------------------------*\
+	# Movies
+\*------------------------------------*/
+
+.movies {
+	.columns(2; 1);
+}
+
+
+
+
+
+/*------------------------------------*\
+	# Movie
+\*------------------------------------*/
+
+.movie {
+	.align(left);
+	.padding(2);
+	&__title,
+	&__release-date {
+		.align(left);
+		.margin(left; 20);
+	}
+	&__title {
+		.font-size(3);
+		.spaced(1);
+	}
+	&__release-date {
+		.font-size(1.8);
+		.spaced(1);
+	}
+	&__genres {
+		justify-content: flex-start;
+		.margin(left; 20);
+	}
+	&__genre {
+		.font-size(1.3);
+		.margin(right; 1);
+	}
+	&__cast {
+		.columns(2; 1);
+	}
+}
+
+
+
+/*------------------------------------*\
+	# Pagination
+\*------------------------------------*/
+
+.pagination {
+	.margin(2; auto);
+	.max-width(40);
+}
+
+
+
+
+
+/*------------------------------------*\
+	# Search
+\*------------------------------------*/
+
+.results {
+	&__result-image {
+		.max-width(20);
+		.margin(right; 2);
+		.spaced(2);
+	}
+	&__result-link {
 		.left();
 	}
-	&__toggle {
-		.hide() !important;
-	}
-	&__menu-item {
-		.inline-block();
-		.padding(1.3);
-		&:last-child {
-			.padding(1.3; 0; 1.3; 1.3);
+	&__result {
+		.clearfix();
+		.max-width(80);
+		.spaced(6);
+		&:last-of-type {
+			.spaced(0);
+		}
+		&:first-of-type {
+			.padding(top; 2);
 		}
 	}
+	&__result-info {
+		.left();
+		.show();
+	}
+	&__result-title {
+		.align(left);
+		.spaced(2);
+	}
+	&__result-overview {
+		.crop();
+		.lightGray();
+		.max-width(80);
+		.show();
+	}
+	&__pagination-next,
+	&__pagination-prev {
+		.cursor();
+		.font-size(3.5);
+		.margin(2; 2; 3; 2);
+		.white();
+		&.-is-disabled {
+			.cursor(not-allowed);
+			.darkGray();
+		}
+	}
+	&__pagination-next {
+		.right();
+		&:after {
+			.icon(@iconArrowRight);
+		}
+	}
+	&__pagination-prev {
+		.left();
+		&:after {
+			.icon(@iconArrowLeft);
+		}
+	}
+	&__page-count {
+		.align(center);
+		.block();
+		.font-size(3);
+		.line-height(1);
+		.padding(2);
+		.white();
+	}
+	&__close {
+		.right();
+		.margin(2);
+		&:after {
+			.cursor();
+			.icon(@iconClose; 3.5);
+			.line-height(1);
+			.white();
+		}
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+	# Main Content
+\*------------------------------------*/
+
+.main-content {
+	.max-width(100);
+	.margin(left; auto);
+	.margin(right; auto);
+	&__inner {
+		.padding(top; 2);
+		.translate(y; -14);
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+	# Navigation
+\*------------------------------------*/
+
+.main-nav {
+	&__menu {
+		.absolute(0; 0);
+		.margin(top; 0);
+		&.-is-hidden {
+			.transparent();
+		}
+	}
+	&__menu-item {
+		.left();
+		.margin(left; 2);
+	}
 	&__menu-link {
-		.font-size(2);
+		.font-size(1.5);
 	}
 }

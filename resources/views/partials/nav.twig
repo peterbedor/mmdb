@@ -1,10 +1,22 @@
 <div class="main-nav js-hide" data-ref="mainNav">
 	<span class="main-nav__close" data-ref="mobileNavClose"></span>
-	<nav>
-		<ul>
-			<li><a href="#">Test</a></li>
-			<li><a href="#">Test</a></li>
-			<li><a href="#">Test</a></li>
+	<nav data-ref="navigation">
+		<ul class="main-nav__menu" data-ref="navigationMenu">
+			{% if auth_check() %}
+				<li class="main-nav__menu-item">
+					<a href="/collection" class="main-nav__menu-link">Collection</a>
+				</li>
+				<li class="main-nav__menu-item">
+					<a href="/logout" class="main-nav__menu-link">Log Out</a>
+				</li>
+			{% else %}
+				<li class="main-nav__menu-item">
+					<a href="/register" class="main-nav__menu-link">Sign Up</a>
+				</li>
+				<li class="main-nav__menu-item">
+					<a href="/signin" class="main-nav__menu-link">Sign In</a>
+				</li>
+			{% endif %}
 		</ul>
 	</nav>
 </div>

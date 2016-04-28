@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Auth;
 
 class MovieController extends Controller
 {
-	public static $cast;
 	public static $movie;
 
 	/**
@@ -44,10 +43,9 @@ class MovieController extends Controller
 	{
 		$request = (new Guzzle())->get('http://api.themoviedb.org/3/movie/' . $id . '?api_key=' . env('API_KEY'));
 
-		$response = json_decode($request->getBody());
-
 		$data = [
-			'movie' => $response,
+			'movie' => json_decode($request->getBody()),
+			'credits' => self::getCredits($id),
 			'collectionIds' => Auth::user()->getMovieIds(),
 			'config' => self::getConfiguration()
 		];
@@ -83,7 +81,12 @@ class MovieController extends Controller
 
 		Auth::user()->movies()->attach($movie);
 
-		if (count($request->genres)) {
+		// Check to see if genre is attached to movie before trying to insert
+		$exists = DB::table('genre_movie')
+				->select('movie_id')
+				->count() > 0;
+
+		if (count($request->genres) && ! $exists) {
 			foreach ($request->genres as $id) {
 				$genre = Genre::find($id);
 
@@ -115,6 +118,27 @@ class MovieController extends Controller
 		return json_encode($data);
 	}
 
+	/**
+	 * @param integer $id
+	 * @return mixed
+	 */
+	public static function getCredits($id)
+	{
+		$request = (new Guzzle())->get('http://api.themoviedb.org/3/movie/' . $id . '/credits?api_key=' . env('API_KEY'));
+
+		return json_decode($request->getBody());
+	}
+
+	/**
+	 * @param integer $id
+	 * @return mixed
+	 */
+	public static function getReview($id)
+	{
+		$request = (new Guzzle())->get('http://api.themoviedb.org/3/movie/' . $id . '/reviews?api_key=' . env('API_KEY'));
+
+		return json_decode($request->getBody());
+	}
 
 	/**
 	 * Save related images and return path

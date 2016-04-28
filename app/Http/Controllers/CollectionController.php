@@ -22,24 +22,49 @@ class CollectionController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function index(Request $request)
+	public function index()
 	{
 		$movies = Auth::user()
 			->movies()
 			->orderBy('title', 'ASC')
 			->paginate(10);
 
-		return view('collection.home')
-			->with('movies', $movies);
+		if (count($movies)) {
+			return view('collection.home')
+				->with('movies', $movies);
+		}
+
+		return view('collection.home');
 	}
 
+	/**
+	 * @param string $slug
+	 * @return mixed
+	 */
 	public function single($slug)
 	{
 		$movie = Movie::where('slug', $slug)
 			->with('genres')
 			->first();
 
-		return view('collection.single')
-			->with('movie', $movie);
+		if (count($movie)) {
+			return view('collection.single')
+				->with([
+					'movie' => $movie,
+					'config' => MovieController::getConfiguration(),
+					'credits' => MovieController::getCredits($movie->tmdb_id),
+				]);
+		}
+
+		return abort('404');
+	}
+
+	public function remove($id)
+	{
+		$movie = Movie::find($id);
+
+		Auth::user()->movies()->detach($movie);
+
+		return redirect('/collection');
 	}
 }

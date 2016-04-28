@@ -3,13 +3,20 @@
 	{{ #results|each }}
 		<div class="container results__result">
 			{{ #poster_path|notEmpty }}
-				<a href="/movie/{{ id }}"><img src="{{ $root.config.secureBaseUrl }}{{ $root.config.posterSizes.3 }}{{ poster_path }}" class="results__result-image"></a>
+				<a href="/movie/{{ id }}" class="results__result-link">
+					<img src="{{ $root.config.secureBaseUrl }}{{ $root.config.posterSizes.3 }}{{ poster_path }}" class="results__result-image">
+				</a>
 
 			{{ else }}
 
-			<a href="/movie/{{ id }}"><img src="https://static1.squarespace.com/static/55a66cffe4b0f979b8e41ab9/t/55a67159e4b0d382cc0a273c/1436971294391/THETITLE_CARTEL_WEBBAR.jpg?format=750w" class="results__result-image"></a>
+			<a href="/movie/{{ id }}" class="results__result-link">
+				<img src="https://static1.squarespace.com/static/55a66cffe4b0f979b8e41ab9/t/55a67159e4b0d382cc0a273c/1436971294391/THETITLE_CARTEL_WEBBAR.jpg?format=750w" class="results__result-image">
+			</a>
 			{{ /poster_path }}
-			<div class="results__result-title">{{ title }}</div>
+			<div class="results__info">
+				<div class="results__result-title">{{ title }} <span class="results__result-year">{{ release_date|getYear(release_date) }}</span></div>
+				<p class="results__result-overview">{{ overview }}</p>
+			</div>
 		</div>
 	{{ /results }}
 </div>

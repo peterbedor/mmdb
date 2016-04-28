@@ -1,0 +1,13 @@
+<a href="#" class="movie__cast-member">
+	{% if member.profile_path %}
+		<img src="{{ config.secureBaseUrl }}{{ config.profileSizes[1] }}{{ member.profile_path }}" class="movie__cast-profile">
+	{% endif %}
+	<div class="movie__cast-info">
+		<div class="movie__cast-character">
+			{{ member.character }}
+		</div>
+		<div class="movie__cast-name">
+			{{ member.name }}
+		</div>
+	</div>
+</a>

@@ -3,10 +3,8 @@
 {% block content %}
 	<div
 		class="header"
-		{% if movie %}
+		{% if movie.backdrop_path is not empty %}
 			style="background-image: url('/{{ movie.backdrop_path }}')"
-		{% else %}
-			style="background-image: url('https://image.tmdb.org/t/p/w780/vsjBeMPZtyB7yNsYY56XYxifaQZ.jpg')"
 		{% endif %}
 	>
 		{% include 'partials/header-actions.twig' %}
@@ -26,12 +24,26 @@
 				</div>
 				<ul class="movie__genres">
 					{% for genre in movie.genres %}
-						<li class="movie__genre">{{ genre.genre }}</li>
+						<li class="movie__genre">
+							<a href="/collection/search/genre/{{ genre.genre_title }}">{{ genre.genre }}</a>
+						</li>
 					{% endfor %}
 				</ul>
 				<p class="movie__overview">
 					{{ movie.overview }}
 				</p>
+				<div class="movie__cast">
+					{% for member in credits.cast|slice(0, 10) %}
+						{% include 'partials/cast.twig' %}
+					{% endfor %}
+				</div>
+				<div class="button button-colored movie__remove" data-ref="movieDelete">Delete</div>
+				<form method="post" action="/collection/remove/{{ movie.id }}" class="movie__delete-form js-hide" data-ref="movieDeleteForm">
+					{{ csrf_field() }}
+					<div class="movie__delete-message">Are you sure?</div>
+					<button class="button button-colored movie__delete-button">Yes</button>
+					<span class="button" data-ref="movieDeleteCancel">No</span>
+				</form>
 			</div>
 		</main>
 	</div>

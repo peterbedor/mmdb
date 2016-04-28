@@ -5,7 +5,20 @@ Wee.fn.make('common', {
 		scope.$private.mobileNav();
 		scope.$private.searchToggle();
 
-		scope.$private.extend();
+		Wee.screen.map([
+			{
+				min: 3,
+				callback: function() {
+					$('ref:navigation').appendTo($('ref:headerNav'));
+				}
+			},
+			{
+				size: 2,
+				callback: function() {
+					$('ref:navigation').insertAfter($('ref:mobileNavClose'));
+				}
+			}
+		]);
 	}
 }, {
 	mobileNav: function() {
@@ -28,7 +41,7 @@ Wee.fn.make('common', {
 			'ref:mobileNavClose': {
 				click: function() {
 					$nav.removeClass(isActive);
-					$body.addClass(isDisabled);
+					$body.removeClass(isDisabled);
 
 					setTimeout(function() {
 						$nav.hide();
@@ -51,6 +64,7 @@ Wee.fn.make('common', {
 					$(this).toggleClass(isActive);
 					$('ref:headerHeading').toggleClass(isHidden);
 					$('ref:mobileNavToggle').toggleClass(isHidden);
+					$('ref:headerNav').toggleClass(isHidden);
 
 					if ($add.hasClass(isActive)) {
 						$add.removeClass(isActive);

@@ -5,8 +5,6 @@
 		class="header"
 		{% if movie.backdrop_path %}
 			style="background-image: url({{ config.secureBaseUrl }}{{ config.backdropSizes[1] }}{{ movie.backdrop_path }})"
-		{% else %}
-			style="background-image: url('https://image.tmdb.org/t/p/w780/vsjBeMPZtyB7yNsYY56XYxifaQZ.jpg')"
 		{% endif %}
 	>
 		{% include 'partials/header-actions.twig' %}
@@ -15,7 +13,11 @@
 	<div class="container">
 		<main class="main-content" role="main">
 			<div class="movie">
-				<img src="{{ config.secureBaseUrl }}{{ config.posterSizes[1] }}{{ movie.poster_path }}" class="movie__poster">
+				{% if movie.poster_path %}
+					<img src="{{ config.secureBaseUrl }}{{ config.posterSizes[1] }}{{ movie.poster_path }}" class="movie__poster">
+				{% else %}
+					<img src="https://static1.squarespace.com/static/55a66cffe4b0f979b8e41ab9/t/55a67159e4b0d382cc0a273c/1436971294391/THETITLE_CARTEL_WEBBAR.jpg?format=750w" class="movie__poster">
+				{% endif %}
 			</div>
 			<div class="main-content__inner">
 				<h1 class="movie__title">
@@ -32,6 +34,11 @@
 				<p class="movie__overview">
 					{{ movie.overview }}
 				</p>
+				<div class="movie__cast">
+					{% for member in credits.cast|slice(0, 10) %}
+						{% include 'partials/cast.twig' %}
+					{% endfor %}
+				</div>
 				<form action="/movie/add/{{ movie.id }}" method="post" class="hidden-inputs" data-ref="addMovie">
 					{{ csrf_field() }}
 					<input type="hidden" name="title" value="{{ movie.title }}">

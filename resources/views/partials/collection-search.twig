@@ -1,0 +1,9 @@
+<div class="movies__letters">
+	{% for letter in range('A', 'Z') %}
+		<a href="/collection/search/letter/{{ letter|lower }}" class="movies__letter">{{ letter }}</a>
+	{% endfor %}
+</div>
+<form action="/collection/search" method="post" class="movies__search">
+	{{ csrf_field() }}
+	<input type="text" name="query" placeholder="Search collection..." data-ref="collectionSearch" data-csrf="{{ csrf_token() }}">
+</form>

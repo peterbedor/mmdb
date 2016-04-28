@@ -5,9 +5,13 @@ Wee.routes.map({
 		'frontPage',
 		'common'
 	],
-	'home': [
-		'search'
-	],
+	'collection': {
+		'$any': 'movie',
+		'$root': [
+			'search',
+			'search:autocomplete'
+		]
+	},
 	'movie': {
 
 	}

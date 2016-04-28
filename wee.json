@@ -1,5 +1,5 @@
 {
-	"name": "Project Name",
+	"name": "MMDb",
 	"paths": {
 		"root": "public",
 		"assets": "assets",
@@ -78,7 +78,7 @@
 		"sourceMaps": true
 	},
 	"generator": {
-		"enable": true,
+		"enable": false,
 		"build": [
 			"source/modules/guide/generate.json"
 		]
@@ -109,7 +109,7 @@
 		"tasks": {
 			"local": {
 				"https": true,
-				"proxy": "https://wee.dev"
+				"proxy": "https://mmdb.dev"
 			},
 			"static": {
 				"https": true

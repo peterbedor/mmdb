@@ -1,0 +1,42 @@
+{% extends 'layouts/master.twig' %}
+
+{% set index = random(data.movies|length - 1) %}
+
+{# Set pagination object #}
+{% set object = {'object': data.movies } %}
+
+{% block content %}
+	<div
+		class="header"
+		{% if data.movies[index].backdrop_path is not empty %}
+			style="background-image: url('/{{ data.movies[index].backdrop_path }}')"
+		{% else %}
+			style="background-image: url('https://image.tmdb.org/t/p/w780/vsjBeMPZtyB7yNsYY56XYxifaQZ.jpg')"
+		{% endif %}
+	>
+		{% include 'partials/header-actions.twig' %}
+	</div>
+
+	<div class="container">
+		<main class="main-content  -no-poster" role="main">
+			<div class="main-content__inner -no-poster">
+				{% if data.movies is not empty %}
+					{% if data.title %}
+						<h1>{{ data.title }}</h1>
+					{% else %}
+						<h1>Results</h1>
+					{% endif %}
+					<div class="movies">
+						{% for movie in data.movies %}
+							{% include 'partials/movie.twig' %}
+						{% endfor %}
+					</div>
+					{% include 'partials/pagination.twig' with object %}
+				{% else %}
+					<h1>No Results</h1>
+					{% include 'partials/collection-search.twig' %}
+				{% endif %}
+			</div>
+		</main>
+	</div>
+{% endblock %}
